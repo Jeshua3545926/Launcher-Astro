@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <title>Launcher</title>
+    <style>
+        body{
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            /* font-family: Arial, sans-serif; */
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, #000000, #0c0e17);
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            align-items:center;
+            text-align: center;
+            justify-content: center;
+            
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(100px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 0 2rem;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            color: white;
+            outline: none;
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .spin {
+            animation: spin 9s linear infinite; /* Más duración = más suavidad */
+            will-change: transform; /* Optimiza el rendimiento */
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes colorCycle {
+        0%   { background-color: rgb(255, 255, 255); }   /* Blanco */
+        10%  { background-color: rgb(255, 180, 200); }
+        20%  { background-color: rgb(243, 44, 86); }     /* Rosa */
+        30%  { background-color: rgb(230, 70, 120); }
+        40%  { background-color: rgb(180, 100, 140); }
+        50%  { background-color: rgb(18, 114, 159); }    /* Azul medio */
+        60%  { background-color: rgb(50, 80, 120); }
+        70%  { background-color: rgb(120, 40, 100); }
+        80%  { background-color: rgb(225, 29, 72); }  
+        85%  { background-color: rgb(255, 0, 0); }   /* Rojo fuerte */
+        90%  { background-color: rgb(250, 100, 100); }
+        100% { background-color: rgb(255, 255, 255); }
+        }
+
+
+        /* Contenedor principal del fondo animado */
+        .background-animation {
+            position: fixed;      /* Se queda fijo mientras haces scroll */
+            top: 0; left: 0;     /* Posición en la esquina superior izquierda */
+            width: 100%;         /* Ocupa todo el ancho */
+            height: 100%;        /* Ocupa toda la altura */
+            z-index: -1;         /* Se coloca detrás de todo el contenido */
+            overflow: hidden;    /* Oculta cualquier desbordamiento */
+        }
+
+        /* Contenedor de los círculos de colores */
+        .background-circles {
+            position: absolute;                    /* Posicionamiento absoluto */
+            top: 50%; left: 35%;                  /* Centrado en la pantalla */
+            transform: translate(-50%, -50%);     /* Ajuste fino del centrado */
+            width: 40rem; height: 40rem;         /* Tamaño del contenedor */
+            opacity: 0.5;                        /* Semi-transparente */
+            filter: blur(120px);                 /* Desenfoque suave */
+        }
+
+        /* Primer círculo - Color rojo/rosa */
+        .circle1 {
+            position: absolute;                   /* Posicionamiento absoluto */
+            width: 40rem; height: 40rem;        /* Tamaño grande */
+            background: rgb(225, 29, 72);       /* Color rojo intenso */
+            border-radius: 50%;         
+            animation: colorCycle 12s ease-in-out infinite;        /* Hace que sea un círculo perfecto */
+            transform: translate(-20%, 0%);      /* Movido hacia la izquierda */
+        }
+
+        /* Segundo círculo - Color rosa central */
+        .circle2 {
+            position: absolute;
+            width: 40rem; height: 40rem;
+            background: rgb(243, 44, 86);       /* Color rosa principal de Cider.sh */
+            border-radius: 50%;
+            animation: colorCycle 12s ease-in-out infinite;
+            transform: translate(10%, -35%);     /* Movido derecha y arriba */
+        }
+
+        /* Tercer círculo - Color rojo oscuro */
+        .circle3 {
+            position: absolute;
+            width: 40rem; height: 40rem;
+            background: rgb(159, 18, 57);       /* Color rojo oscuro */
+            border-radius: 50%;
+            animation: colorCycle 12s ease-in-out infinite;
+            transform: translate(10%, 35%);      /* Movido derecha y abajo */
+        }
+
+        .Logo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .astro {
+           
+            width: 200px; /* Ajusta el tamaño según sea necesario */
+            height: auto; /* Mantiene la proporción de la imagen */
+            border-radius: 50%; 
+
+        }
+
+        .Acrylic {
+        background: radial-gradient(
+            ellipse 400px 200px at top,
+            rgba(255, 255, 255, 0.3),
+            rgba(255, 255, 255, 0.05));
+        backdrop-filter: blur(20px);
+        border-radius: 1.5rem;
+        margin-top: 2rem;
+        box-shadow: 0 0 32px rgba(157, 157, 157, 0.559);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        }
+        span{
+            
+            background: linear-gradient(135deg, #ffffff, #38f9d7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 2.5rem;
+            font-style: italic;
+            font-family:'Brush Script MT', cursive;
+        }
+        h1{
+            font-size: 2.3rem;
+            margin: 0;
+            padding: 0.5rem;
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #ffffff, #38f9d7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="background-circles spin">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+        </div>
+    </div>
+<header class="header">
+        <nav class="nav">
+            <div class="logo">Astro Editor</div>
+            <ul class="nav-links">
+                <li><a href="#products">Emulador</a></li>
+                <li><a href="#changelogs">Diagramas</a></li>
+                <li><a href="#documentation">Extensionesn</a></li>
+                <li><a href="#marketplace">Compiladores</a></li>
+                <li><a href="#taproom">Configuracion</a></li>
+            </ul>
+            <input type="text" class="search-box" placeholder="Search... ⌘K">
+        </nav>
+    </header>
+    <main>
+        <section class="Logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjqsrJYckH6G_MAusac7tzi7T6MIMaB6dDcQ&s" alt="Astro Editor Logo" class="astro">
+        </section>
+
+        <section class="content">
+            <h1>Welcome to <span>Astro Editor</span></h1>
+            <div class="Acrylic"><p>Un poderoso Editor de codigo Con Inteligencia Artificial Integrada.</p></div>
+            <p style="padding: 20px;">¡Explora nuestras funciones y comienza con tus proyectos hoy mismo!</p>
+        </section>
+
+        
+        
+    </main>
+</body>
+</html>
