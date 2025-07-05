@@ -61,6 +61,9 @@ function findEmulatorPath() {
   return null;
 }
 
+
+
+
 ipcMain.on('start-emulator', (event, avdName) => {
   const emulatorPath = findEmulatorPath();
 

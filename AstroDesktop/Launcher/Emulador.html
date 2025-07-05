@@ -366,7 +366,10 @@ checkAndroid.forEach(checkbox => {
       }catch(error){
         alert(error)
       }
-    } 
+    }else{
+      // Checkbox no marcado: detiene emulador
+      checkbox.checked = false; // Desmarcar el checkbox
+    }
   });
 });
 
