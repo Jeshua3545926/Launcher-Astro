@@ -1,16 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elegancia Phones</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
 
-    <title>Launcher</title>
-    <style>
-        body{
+    .phone {
+      background: rgba(0, 0, 0, 0.278);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      box-shadow: 0 8px 40px rgba(255, 255, 255, 0.08);
+      padding: 2rem;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .phone:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 12px 60px rgba(255, 255, 255, 0.1);
+    }
+
+    .Fondo {
+      height: 320px;
+      width: 100%;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-bottom: 1.2rem;
+      -webkit-mask-image: linear-gradient(black 70%, transparent);
+      mask-image: linear-gradient(black 70%, transparent);
+    }
+
+    h3 {
+      margin: 0.5rem 0 1rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 64px;
+      height: 36px;
+      margin: 0.7rem 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #3c3c3c;
+      transition: 0.4s;
+      border-radius: 34px;
+      box-shadow: inset 0 0 4px rgba(0,0,0,0.6);
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 28px;
+      width: 28px;
+      left: 4px;
+      bottom: 4px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #cccccc);
+      border-radius: 50%;
+      transition: 0.4s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    input:checked + .slider {
+      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(28px);
+    }
+
+    .fa-cog {
+      margin-top: 0.9rem;
+      font-size: 1.5rem;
+      color: #e5e5e5;
+      transition: transform 0.4s ease, color 0.4s ease;
+      cursor: pointer;
+    }
+
+    .fa-cog:hover {
+      transform: rotate(360deg);
+      color: #00c6ff;
+    }
+
+    .android-phone {
+      background-image: url('./png-transparent-samsung-galaxy-s9-samsung-galaxy-s8-plus-g955fd-dual-sim-4g-64gb-sim-free-unlocked-w-android-smartphone-samsung-gadget-mobile-phone-case-mobile-phone-Photoroom.png');
+    }
+
+    .ios-phone {
+      background-image: url('./Apple-iPhone-16-Pro-hero-240909_inline.jpg.large-removebg-preview.png');
+    }
+
+    @media (max-width: 768px) {
+      .Fondo {
+        height: 240px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      body {
+        flex-direction: column;
+        gap: 3rem;
+        padding: 3rem 1rem;
+      }
+
+      .phone {
+        width: 90vw;
+      }
+    }
+
+    body{
             margin: 0;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             padding: 0;
             /* font-family: Arial, sans-serif; */
             font-family: 'JetBrains Mono', monospace;
@@ -28,8 +148,8 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(100px);
+            background: rgba(0, 0, 0, 0.123);
+            backdrop-filter: blur(30px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
             padding: 0 2rem;
@@ -157,57 +277,7 @@
             transform: translate(10%, 35%);      /* Movido derecha y abajo */
         }
 
-        .Logo{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            
-        }
-        .astro {
-           
-            width: 200px; /* Ajusta el tamaño según sea necesario */
-            height: auto; /* Mantiene la proporción de la imagen */
-            border-radius: 50%; 
-
-        }
-
-        .Acrylic {
-        background: radial-gradient(
-            ellipse 400px 200px at top,
-            rgba(255, 255, 255, 0.3),
-            rgba(255, 255, 255, 0.05));
-        backdrop-filter: blur(20px);
-        border-radius: 1.5rem;
-        margin-top: 2rem;
-        box-shadow: 0 0 32px rgba(157, 157, 157, 0.559);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #fff;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        }
-        span{
-            
-            background: linear-gradient(135deg, #ffffff, #38f9d7);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            font-size: 2.5rem;
-            font-style: italic;
-            font-family:'Brush Script MT', cursive;
-        }
-        h1{
-            font-size: 2.3rem;
-            margin: 0;
-            padding: 0.5rem;
-            text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #ffffff, #38f9d7);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-    </style>
+  </style>
 </head>
 <body>
     <div class="background-animation">
@@ -231,30 +301,76 @@
             <input type="text" class="search-box" placeholder="Search... ⌘K">
         </nav>
     </header>
-    <main>
-        <section class="Logo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjqsrJYckH6G_MAusac7tzi7T6MIMaB6dDcQ&s" alt="Astro Editor Logo" class="astro">
-        </section>
+<body>
 
-        <section class="content">
-            <h1>Welcome to <span>Astro Editor</span></h1>
-            <div class="Acrylic"><p>Un poderoso Editor de codigo Con Inteligencia Artificial Integrada.</p></div>
-            <p style="padding: 20px;">¡Explora nuestras funciones y comienza con tus proyectos hoy mismo!</p>
-        </section>
+  <div class="phone">
+    <div class="Fondo ios-phone"></div>
+    <h3>Android</h3>
+    <label class="switch">
+      <input class="Android-switch" type="checkbox">
+      <span class="slider round"></span>
+    </label>
+    <div><i class="fas fa-cog"></i></div>
+  </div>
 
-        
-        
-    </main>
-
+  <div class="phone">
+    <div class="Fondo ios-phone"></div>
+    <h3>iOS</h3>
+    <label class="switch ">
+      <input class="ios-switch" type="checkbox">
+      <span class="slider round"></span>
+    </label>
+    <div><i class="fas fa-cog"></i></div>
+  </div>
+  <script src="./index.js"></script>
     <script>
-        const searchBox = document.querySelector('.search-box');
-        document.addEventListener('keydown', function(event) {
-    if (event.ctrlKey && event.key === 'k') {
-        
-        searchBox.focus();
-        
-    }
-    });
+      const checkboxes = document.querySelectorAll('.ios-switch');
+      const operatingSystem = detectarSistemaOperativo();
+
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+         
+         if (checkbox.checked) {
+        if (operatingSystem === 'Windows' || operatingSystem === 'Linux') {
+          alert(`No puedes iniciar porque estás usando ${operatingSystem}`);
+          checkbox.checked = false; // Desmarcar el checkbox
+        } else if (operatingSystem === 'macOS') {
+          run(); // Ejecuta tu función solo en macOS
+        } else {
+          alert('Sistema operativo no soportado');
+          checkbox.checked = false; // Desmarcar el checkbox
+        }
+      }
+
+        });
+      });
+      function detectarSistemaOperativo() {
+          const plataforma = navigator.platform.toLowerCase();
+          const userAgent = navigator.userAgent.toLowerCase();
+
+          if (plataforma.includes('win')) return 'Windows';
+          if (plataforma.includes('mac')) return 'macOS';
+          if (plataforma.includes('linux')) return 'Linux';
+
+          return 'otro sistema operativo';
+      } 
+
+const checkAndroid = document.querySelectorAll('.Android-switch');
+
+checkAndroid.forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      // Checkbox marcado: inicia emulador
+      try{
+        window.electronAPI.startEmulator('Pixel_7_Pro');
+      }catch(error){
+        alert(error)
+      }
+    } 
+  });
+});
+
+
 
     </script>
 </body>
