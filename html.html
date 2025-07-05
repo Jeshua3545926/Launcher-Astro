@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mensaje</title>
+</head>
+<body>
+    <style>
+        div{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+
+        }
+    </style>
+  
+    <script>
+  setInterval(() => {
+    fetch('http://localhost:3000/server')
+      .then(res => res.json())
+      .then(data => {
+        if(data.showAlert) {
+          const alertDiv = document.createElement('div');
+            alertDiv.textContent = 'Proximamente';
+          document.body.appendChild(alertDiv);
+
+          setTimeout(() => {
+            alertDiv.remove();
+          }, 3000);
+          fetch('http://localhost:3000/server', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ showAlert: false }) // avisar que ya mostró
+          });
+        }
+      });
+  }, 3000);
+
+
+</script>
+
+</body>
+</html>

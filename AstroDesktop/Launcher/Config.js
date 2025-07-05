@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron/main');
-const { exec } = require('child_process');
+const { exec, spawn } = require('child_process'); // ✅ Importa spawn
 const path = require('node:path');
 const fs = require('fs');
 
@@ -22,6 +22,16 @@ function createWindow () {
 app.whenReady().then(() => {
   createWindow();
 
+  const serverPath = path.join(__dirname, 'server.js'); // ✅ Usa ruta absoluta
+  const serverProcess = spawn('node', [serverPath], {
+    cwd: path.dirname(serverPath),
+    detached: true,
+    stdio: ['ignore', 'inherit', 'inherit']
+
+  });
+
+  serverProcess.unref(); // ✅ Se llama dentro del `then`, después de spawn
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
@@ -35,7 +45,7 @@ app.on('window-all-closed', () => {
   }
 });
 
-// 🔍 Buscar automáticamente el ejecutable del emulador
+// 🧠 Código del emulador (no se toca)
 function findEmulatorPath() {
   const home = process.env.HOME || process.env.USERPROFILE;
   const sdkPaths = [
@@ -51,7 +61,6 @@ function findEmulatorPath() {
   return null;
 }
 
-// ▶️ Iniciar el emulador AVD
 ipcMain.on('start-emulator', (event, avdName) => {
   const emulatorPath = findEmulatorPath();
 

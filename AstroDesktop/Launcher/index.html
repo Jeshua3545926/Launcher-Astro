@@ -241,6 +241,7 @@
             <div class="Acrylic"><p>Un poderoso Editor de codigo Con Inteligencia Artificial Integrada.</p></div>
             <p style="padding: 20px;">¡Explora nuestras funciones y comienza con tus proyectos hoy mismo!</p>
         </section>
+        <button class="send">enviar</button>
 
         
         
@@ -254,6 +255,17 @@
         searchBox.focus();
         
     }
+    });
+
+
+    const send = document.querySelector('.send');
+    send.addEventListener('click', function() {
+    fetch('http://localhost:3000/server', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ showAlert: true })
+});
+
     });
 
     </script>
