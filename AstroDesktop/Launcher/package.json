@@ -4,14 +4,16 @@
   "description": "Hello World!",
   "main": "Config.js",
   "scripts": {
-    
     "start": "electronmon .",
     "test": "echo \"Error: no test specified\" && exit 1",
-     "build": "electron-builder"
+    "build": "electron-builder"
   },
   "author": "Jane Doe",
   "license": "MIT",
   "devDependencies": {
     "electron": "^37.2.0"
+  },
+  "dependencies": {
+    "electronmon": "^2.0.3"
   }
 }
